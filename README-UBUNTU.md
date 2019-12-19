@@ -1,62 +1,62 @@
-# Install prequisites
+# 前提条件をインストールする
 
 ```
 sudo apt-get install wget xsltproc xmlto fonts-dejavu fonts-linuxlibertine unifont ruby-full zip unzip default-jdk`
 gem install bundler
 bundle install
 
-#install epub lib:
+#epub libをインストールします：
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
 #Xvfb and xvfb-run (fake X for calibre) or a running X server session -- MAYBE NOT ACTUALLY NEEDED
 
 sudo apt-get install python-pip
 sudo apt-get install xvfb xserver-xephyr vnc4server
 sudo pip install pyvirtualdisplay
-# optional
+# オプション
 sudo apt-get install python-pil scrot
 sudo pip install pyscreenshot
 
-# install Prince for your platform from https://www.princexml.com/download/ e.g.:
+# プラットフォーム用のPrinceを https://www.princexml.com/download/ からインストールします
+# 例：
 wget https://www.princexml.com/download/prince_12.5-1_ubuntu18.04_amd64.deb
 sudo apt install ./prince_12.5-1_ubuntu18.04_amd64.deb
 ```
 
 
 
-There might be other libs needed. Please, open an issue once you find it.
+他のライブラリが必要な場合があります。 問題を見つけたら、開いてください。
 
-# Compilation
+# 編纂
 
-To make all the versions do:
+すべてのバージョンを作成するには以下のコマンドを打ちます：
 
 `./cll_build`
 
-The final results will end up under the build/ directory, scattered
-about in various places.  If you would like the final outputs only
-to be copied to another directory, you can use the -a option, so for example:
+最終結果は、さまざまな場所に散在する build/ ディレクトリの下に配置されます。
+最終出力のみを別のディレクトリにコピーする場合は、-aオプションを使用できます。
+たとえば、次のようなコマンドを打ちます：
 
 `./cll_build -a output/`
 
-would put all the outputs in the output/ directory, whereas
+とコマンドを打った場合、すべての出力を output/ ディレクトリに配置しますが、
 
 `./cll_build -a ~/public_html/cll_build/`
 
-would put them in your personal webspace.
+とコマンドを打った場合、あなたの個人的なウェブスペースにそれらを置きます。
 
-Running a complete build takes quite a while (like probably at least
-an hour).  To do it for just one chapter for faster testing:
+完全なビルドの実行にはかなりの時間がかかります（おそらく少なくとも1時間）。
+迅速なテストのためにたった1つの章でそれを行うには以下のコマンドを打ちます：
 
 `./cll_build -t chapters/05.xml`
 
-This does the whole book but is also much faster:
+以下のコマンドは本全体を行いますが、はるかに高速です：
 
 `./cll_build -t`
 
-There are many possible sub-targets as well, which are specified
-with -T, such as:
+以下のような、-Tで指定された多くのサブターゲットもあります：
 
 `./cll_build -t -T pdf`
 
-You can get a complete list of targets via:
+次の方法でターゲットの完全なリストを取得できます：
 
 `./cll_build -h`
