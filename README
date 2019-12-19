@@ -1,60 +1,57 @@
-Requirements
-------------
+必要条件
+--------
 
-All you need is Docker (
-https://docs.docker.com/install/#supported-platforms ) or podman (
-https://podman.io/getting-started/installation ) and some means of
-running bash scripts.  This means you can run this on a MacOS box,
-even though it's very much a Linux build process.  Windows should
-also be possible, albeit with some difficulty (because you have to
-get bash).
+必要なのは、 Docker （
+https://docs.docker.com/install/#supported-platforms）または podman （
+https://podman.io/getting-started/installation）および bashスクリプトを
+実行するいくつかの手段です。 これは、Linuxビルドプロセスであるにもかかわらず、
+これをMacOSボックスで実行できることを意味します。 （bashを取得する必要がある
+ため）多少の困難はありますが、Windowsも使用できるはずです。
 
-You really need at least 2GiB of free RAM; Prince will swap like
-crazy otherwise.
+少なくとも2GiBの空きRAMが本当に必要です。
+そうでなければ、 Prince は狂ったようにスワップします。
 
-The builds will run in a podman (preferred) or docker container,
-depending on what you have available.
+ビルドは、利用可能なものに応じて、
+podman（優先）または Docker コンテナで実行されます。
 
-Usage
------
+使い方
+------
 
-To make all the versions do:
+すべてのバージョンを作成するには以下のコマンドを打ちます：
 
   ./run_container.sh
 
-Note that this takes a while, proportionate to available CPU; on an
-AWS t2.micro I gave up after over 2 hours due to it running out of
-RAM.  On an AWS t2.medium it took about an hour.  RAM is a
-significant consideration; it needs at least 2GiB free (and possibly
-more).
+これには、使用可能なCPUに比例して時間がかかることに注意してください。
+AWS t2.micro では、RAMが不足しているため、2時間以上後に諦めました。 
+AWS t2.medium では、約1時間かかりました。 RAM は重要な考慮事項です。
+少なくとも 2GiB の空きが必要です（場合によってはそれ以上）
 
-The final results will end up under the build/ directory, scattered
-about in various places.  If you would like the final outputs only
-to be copied to another directory, i.e. for web display, you can use
-the -a option, so for example:
+最終結果は、さまざまな場所に散在する build/ ディレクトリの下に配置されます。
+最終出力のみを別のディレクトリにコピーする場合、
+つまり Web 表示用にしたい場合、-a オプションを使用できます。
+たとえば、
 
   ./run_container.sh -a output/
 
-would put all the outputs in the output/ directory, whereas
+とコマンドを打った場合、すべての出力を output/ ディレクトリに配置しますが、
 
   ./run_container.sh -a ~/public_html/cll_build/
 
-would put them in your personal webspace.
+とコマンドを打った場合、あなたの個人的なウェブスペースにそれらを置きます。
 
-Running a complete build takes quite a while (like probably at least
-an hour).  To do it for just one chapter for faster testing:
+完全なビルドの実行にはかなりの時間がかかります（おそらく少なくとも1時間）。
+迅速なテストのためにたった1つの章でそれを行うには以下のコマンドを打ちます：
 
   ./run_container.sh -t chapters/05.xml 
 
-This does the whole book but is also much faster:
+以下のコマンドは本全体を行いますが、はるかに高速です：
 
   ./run_container.sh -t
 
-There are many possible sub-targets as well, which are specified
-with -T, such as:
+以下のような、-Tで指定された多くのサブターゲットもあります：
 
   ./run_container.sh -t -T pdf
 
-You can get a complete list of targets via:
+次の方法でターゲットの完全なリストを取得できます：
 
   ./run_container.sh -h
