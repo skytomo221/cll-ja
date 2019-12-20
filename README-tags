@@ -1,144 +1,135 @@
 
-      ============
-      Introduction
-      ============
+      ==================
+      イントロダクション
+      ==================
 
-The docbook for the CLL uses a lot of our own custom/homebrew xml tags.
+CLL の docbook は、多くの（a lot of）独自の custom/homebrew XMLタグを使用します。
 
-No really.  A *lot*.
+いやいや。 「とても（a lot）」。
 
-These are all auto-converted to basic docbook.  Our customization of
-docbook itself is very minor; just the usual CSS and
-docbook2html_config.xsl stuff.
+これらはすべて基本的な docbook に自動変換されます。
+docbook 自体のカスタマイズはごくわずかです。
+通常の CSS と docbook2html_config.xsl のものだけです。
 
-The basic point of all the custom tags is to make it easy to enter
-our own special-case stuff, and also to maintain semantic
-distinctions that we might want to mark up later, whether we want to
-mark them up specially right now or not.  The actual markup is done
-with the "role" attribute and CSS, basically.
+すべてのカスタムタグの基本的なポイントは、簡単に入力できるようにすることです。
+私たち自身の特別なケース、そして今すぐ特別にマークアップしたいかどうかに関係なく、
+後でマークアップしたいセマンティックの区別を維持するために。
+実際のマークアップは、基本的に「ロール（role）」属性と CSS を使用して行われます。
 
-The following is a list of the custom tags and when to use them.
-Mostly it's just in the form of examples; ask rlpowell/camgusmis if
-you want more detail.
+以下は、カスタムタグとそれらを使用するタイミングのリストです。
+ほとんどの場合、それは単なる例です。
+詳細が必要な場合は、 rlpowell または camgusmis に問い合わせてください。
 
-IMPORTANT: These tags (both name and structure) are not sacred; if
-you can see a better way to do things, please let rlpowell/camgusmis
-know.
+重要：これらのタグ（名前と構造の両方）は神聖ではありません。
+物事を行うためのより良い方法を見ることができるなら、rlpowell または camgusmis に知らせてください。
 
-      Simple Phrase Markup
-      ====================
+      簡単なフレーズマークアップ
+      ==========================
 
-These are used to markup inline phrases, mostly in Lojban.
+これらは、主にロジバンでインラインフレーズをマークアップするために使用されます。
 
   jbophrase
   ---------
 
-Example: "a man biting a dog at a specified place and time. But
-Lojbanic events may be much more <quote>spread out</quote> than
-that: <jbophrase>mi vasxu</jbophrase> (I breathe) is something
-which is true during the whole of my life"
+例：「指定された場所と時間で犬を噛む男。
+しかし、ロジバンにおける事象はそれよりはるかに<quote>広がっている</quote>可能性がある。
+例えば、<jbophrase>mi vasxu</jbophrase>（私は息をする）というのは、私の生涯を通じて真実である。」
 
-This is used for any sequence of Lojban words that is simply present
-inline as normal text.  There is currently no glossary of these
-phrases, although there certainly could be.
+これは、通常のテキストとして単にインラインに存在するロジバン単語のシーケンスに使用されます。
+これらのフレーズの用語集は現在ありませんが、確かに存在する可能性があります。
 
-  jbophrase validity
-  ------------------
+  jbophrase 有効性
+  ----------------
 
-A <jbophrase> that contains invalid Lojban should be <jbophrase
-valid="false">, and one that contains strange or surprising Lojban
-should be <jbophrase valid="iffy">, to give us the option of marking
-them up with special colours or other indicators later.
-
+無効なロジバンを含む<jbophrase>は<jbophrase valid = "false">である必要があり、
+奇妙または意外なロジバンを含むものは<jbophrase valid = "iffy">である必要があり、
+特別な色でマークアップするオプションを提供するか、後で他の表示版を提供します。
 
   valsi
   -----
 
-Example: "It is also possible to put the tense somewhere else in the
-bridi by adding <valsi>ku</valsi> after it."
+例：その後に<valsi> ku </ valsi>を追加することで、
+bridiのどこかに時制を置くことも可能である。」
 
-This is used for a single Lojban word when it is referenced in the
-text (that is, when discussing the word, not when using its actual
-meaning).  This results in a link from the Lojban glossary.
+これは、テキストで参照されている単一のロジバン単語に使用されます
+（つまり、実際の意味を使用するときではなく、単語を議論するとき）。
+これにより、ロジバン用語集からのリンクが作成されます。
 
-NB: This means that anything wrapped in valsi must be findable in
-jbovlaste.
+備考：これは、valsiでラップされたものは
+すべてjbovlasteで検索可能でなければならないことを意味します。
 
-A special case here is compound cmavo.  Where the compound has its
-own meaning that isn't necessarily composable from the parts, use a
-single tag, like so:
+ここでの特別なケースは、複合シマヴォです。
+コンパウンドがパーツから必ずしも構成可能でない独自の意味を持つ場合、
+次のように単一のタグを使用します：
 
   <valsi>.uinai</valsi>
 
-Where it is decomposable, use two adjacent, like so:
+分解可能な場合は、次のように隣接させて使用します：
 
   <valsi>je</valsi><valsi>nai</valsi>
 
-  valsi validity
-  --------------
+  valsi 有効性
+  ------------
 
-<valsi valid="false">ro'irre'o</valsi> should be used where an
-example morphologically illegal word is given, as in that example.
-  
+<valsi valid="false">ro'irre'o</valsi>は、その例のように、
+形態学的に違法な例が与えられている場合に使用する必要があります。
+
   cmevla
   ------
 
-Like "valsi" (including validity) but with no expectation that it
-can be found in a dictionary.
+「valsi」（有効性を含む）に似ていますが、辞書で見つかることを期待していません。
 
   diphthong
   ---------
 
-Example: "(for example, <diphthong>io</diphthong> is pronounced
-<quote>yo</quote>)"
+例：「（たとえば、<diphthong>io</diphthong>は<quote>yo</quote>と発音される）」
 
-Used to markup diphthong in discussion of morphology.
+形態の議論で二重母音をマークアップするために使用されます。
 
   letteral
   --------
 
-Example: "they all end in the letter <letteral>o</letteral>, which
-is otherwise a rare letter in Lojban gismu."
+例：「すべて文字は<letteral>o</letteral>で終わるというのは、
+ロジバンギスムでは珍しい文字である。」
 
-Used to markup individual letters when their use in Lojban is being
-referred to by the text.
+ロジバンでの使用がテキストで参照されているときに、個々の文字をマークアップするために使用されます。
   
   rafsi
   -----
 
-Example: "<para>In making a lujvo that contains <rafsi>jax-</rafsi>
-for a selbri that contains <valsi>jai</valsi>,"
+例：「<para><valsi>jai</valsi>を含むセルブリに対して
+<rafsi>jax-</rafsi>を含むlujvoを作成する場合」
 
-Used to markup a rafsi when referred to as such.
-  
+ラフシ（rafsi）と呼ばれるときにラフシをマークアップするために使用されます。
+
   morphology
   ----------
 
-Example: "As a result, <morphology>bf</morphology> is forbidden, and
-so is <morphology>sd</morphology>"
+例：「結果として、<morphology>bf</morphology>は禁止されているため、
+<morphology>sd</morphology>も禁止されている」
 
-Used to markup any morphological examples not otherwise covered.
+他の方法でカバーされていない形態例をマークアップするために使用されます。
   
   inlinemath
   ----------
 
-Example: <inlinemath>(1000 * 6) - (500 * 0) + (100 * 0) - (10 * 15) - 3 = 5847</inlinemath>
+例：<inlinemath>(1000 * 6) - (500 * 0) + (100 * 0) - (10 * 15) - 3 = 5847</inlinemath>
 
-Used to wrap math that appears inline; just shorthand for docbook's
-<inlineequation><mathphrase>
-  
+インラインで表示される数学をラップするために使用されます。 
+docbook の<inlineequation><mathphrase>の省略形です。
+
   math
   ----
   
-Example: <math>(1000 * L) - (500 * A) + (100 * H) - (10 * R) - V</math>
+例：<math>(1000 * L) - (500 * A) + (100 * H) - (10 * R) - V</math>
 
-Used to wrap math that appears as its own paragrah; just shorthand
-for docbook's <informalequation><mathphrase>
+独自の段落として表示される数学をラップするために使用されます。
+docbook の<inlineequation><mathphrase>の省略形です。
 
   mmlmath / mmlinlinemath
   -----------------------
   
-Example:
+例：
 
 <mmlinlinemath>
   <mrow>
@@ -148,100 +139,96 @@ Example:
   </mrow>
 </mmlinlinemath>
 
-Gets turned (eventually) into MathML <math> tags, with
-<inlineequation> or <informalequation> as appropriate.
+適宜、<inlineequation>または<informalequation>を使用して、
+（最終的に）MathML <math>タグに変換されます。
 
   grammar-template
   ----------------
 
-Example:
+例：
 
-  The syntax of jeks is:</para>
+  jeksの構文は次のとおりである：</para>
   <grammar-template>
     [na] [se] JA [nai]
   </grammar-template>
   <para>parallel to eks and giheks.</para>
 
-Used to show (usually very simplified versions of) the Lojban formal
-grammatical productions.
+（通常は非常に簡略化されたバージョンの）ロジバンの正式な
+文法作品を表示するために使用されます。
 
   definition
   ----------
 
-Example:
+例：
 
   <definition>
-    <valsi>bridi</valsi> <content>x1 is a predicate relationship with relation x2 (abstraction) among arguments (sequence/set) x3</content>
+    <valsi>bridi</valsi> <content>x1 は x2 （関係）を x3 （項の列／集合）について賓述を表す関係性／命題</content>
   </definition>
 
-Used to denote a free-standing definition for a Lojban word (as opposed to the
-cmavo-list sections).
+ロジバン語の独立した定義を示すために使用されます（シマヴォリストセクションとは対照的）。
 
       The cmavo Lists
       ===============
 
-At the top of most sections, and sometimes embedded throughout, is a list of
-cmavo, with (at least) the cmavo, a selmaho, and a description.
+ほとんどのセクションの最上部には、シマヴォのリストがあり、（少なくとも）シマヴォ、セルマホ、説明が含まれています。
 
-Basic Example:
+基本的な例：
 
     <cmavo-list>
       <cmavo-entry>
         <cmavo>bo</cmavo>
         <selmaho>BO</selmaho>
-        <description>closest scope grouping</description>
+        <description>範囲接続（短）：種々の構造範囲を最も短く右方向に繋げる</description>
       </cmavo-entry>
     </cmavo-list>
 
-Example that covers the attitudinal version:
+心態詞をカバーする例：
 
     <cmavo-entry>
       <cmavo>.u'i</cmavo>
-      <attitudinal-scale point="sai">amusement</attitudinal-scale>
-      <attitudinal-scale point="nai">weariness</attitudinal-scale>
+      <attitudinal-scale point="sai">とても愉快</attitudinal-scale>
+      <attitudinal-scale point="nai">退屈</attitudinal-scale>
     </cmavo-entry>
     
-Example that covers the sumtcita version:
+sumtcita をカバーする例：
 
     <cmavo-entry>
       <cmavo>bai</cmavo>
       <gismu>bapli</gismu>
-      <modal-place>compelled by</modal-place>
-      <modal-place se="se">compelling</modal-place>
+      <modal-place>～に強いられて</modal-place>
+      <modal-place se="se">～を強いて</modal-place>
     </cmavo-entry>
 
-THere's also a <cmavo-list-head> which works just like a normal
-table/list head, and only actually occurs once so far.
+また、通常のテーブル/リストヘッドのように機能する<cmavo-list-head>があり、
+実際にはこれまでに1回だけ発生します。
 
       Examples
       ========
 
-A truly staggering percentage of the CLL consists of what it calls
-"examples" (they usually aren't examples of anything really, but
-that's neither here nor there).  These come in a few set patterns,
-which we've codified.  Each of these comes with a bunch of sub-tags,
-as well, that are only valid inside examples.
+CLLの本当に驚異的な割合は、「例」と呼ばれるもので構成されています
+（通常は実際の例ではありませんが、それはここにもそこにもありません）。
+これらはいくつかのセットパターンで提供されます。 
+これらにはそれぞれ、サンプル内でのみ有効なサブタグがたくさん付いています。
 
-VERY IMPORTANT:
+非常に重要：
 
   <example role="interlinear-gloss-example" xml:id="random-id-jig0">
 
-the id is a random string to be used for anchors only, i.e. not for
-humans.  It should never be changed or removed.  It should follow
-the example around forever (unless the example itself is removed, of
-course).
+id は、アンカーのみに使用されるランダムな文字列です。
+つまり、人間には使用されません。
+変更または削除しないでください。
+サンプルは永遠に続くはずです（もちろん、サンプル自体が削除されない限り）。
 
-Note that the <jbo> tags here can also take valid="false" and
-valid="iffy", like <jbophrase>.
+ここでの <jbo> タグは、 <jbophrase> のように、 valid = "false" および
+valid = "iffy" を取ることもできます。
 
   interlinear-gloss-example
   -------------------------
 
-(This is a technical linguistics term for word-by-word
-pseudo-translations; see
-http://www.eva.mpg.de/lingua/resources/glossing-rules.php )
+（これは、単語ごとの疑似翻訳の技術用語です。
+http://www.eva.mpg.de/lingua/resources/glossing-rules.php を参照してください。）
 
-Example:
+例：
 
     <example role="interlinear-gloss-example" xml:id="example-do-mamta-mi">
       <title>
@@ -249,20 +236,19 @@ Example:
       </title>
       <interlinear-gloss>
         <jbo>do mamta mi</jbo>
-        <gloss>You are-a-mother-of me</gloss>
-        <natlang>You are my mother</natlang>
+        <gloss>あなた 母 私</gloss>
+        <natlang>あなたは私の母です</natlang>
       </interlinear-gloss>
     </example>
 
-Inside the <interlinear-gloss>, <jbo> marks raw Lojban, <gloss> marks natural
-language text (normally English) that matches the Lojban word for word, and
-<natlang> marks natural language text (normally English) that more
-loosely/colloquially translates the Lojban.
+<interlinear-gloss>内で、<jbo>は生のロジバンをマークし、
+<gloss>は単語のロジバン単語に一致する自然言語テキスト（通常は英語）をマークし、
+<natlang>はより緩く/口語的にロジバンを翻訳します。
 
   pronunciation-example
   ---------------------
 
-Example:
+例：
 
     <example role="pronunciation-example" xml:id="example-random-id-k2B4">
       <title>
@@ -275,55 +261,54 @@ Example:
       </pronunciation>
     </example>
 
-Similar in concept, but the <ipa> section matches the <jbo> section
-in terms of sounds rather than words.
+概念的には似ていますが、<ipa>セクションは単語ではなく音の点で
+<jbo>セクションと一致します。
 
   lojbanization-example
   ---------------------
 
-Example:
+例：
 
     <example role="lojbanization-example" xml:id="example-random-id-DQju">
       <title>
-        <indexterm type="example-imported"><primary>cobra</primary><secondary>example</secondary></indexterm>
+        <indexterm type="example-imported"><primary>cobra</primary><secondary>例</secondary></indexterm>
         <anchor xml:id="c4e7d6"/>
       </title>
       <lojbanization>
         <natlang>cobra</natlang>
-        <jbo>kobra <comment>Lojbanize</comment></jbo>
-        <jbo>sinc,r,kobra <comment>prefix rafsi</comment></jbo>
+        <jbo>kobra <comment>ロジバン化</comment></jbo>
+        <jbo>sinc,r,kobra <comment>語頭ラフシ</comment></jbo>
       </lojbanization>
     </example>
 
-Used for demonstration of conversion of a natural language word or
-name into a Lojban word.  Note the <comment> tag that can be
-associated with particular lines.
+自然言語の単語または名前のロジバン語への変換のデモンストレーションに使用されます。
+特定の行に関連付けることができる<comment>タグに注意してください。
 
   lujvo-example
   -------------
 
-Example:
+例：
 
     <example xml:id="example-random-id-qjbP" role="lujvo-example">
       <title>
-        <indexterm type="example-imported"><primary>supper</primary><secondary>example</secondary></indexterm>
+        <indexterm type="example-imported"><primary>晩餐</primary><secondary>例</secondary></indexterm>
         <anchor xml:id="c4e6d5"/>
       </title>
       <lujvo-making>
         <jbo>vancysanmi</jbo>
         <veljvo>vanci sanmi</veljvo>
-        <gloss><quote>evening meal</quote></gloss>
-        <natlang>or <quote>supper</quote></natlang>
+        <gloss><quote>夕飯</quote></gloss>
+        <natlang>または <quote>晩餐</quote></natlang>
       </lujvo-making>
     </example>
 
-Used to show conversion between a lujvo and the words used to make
-it, and its meaning; note the new <veljvo> internal tag.
+lujvo とその作成に使用された単語とその意味の間の変換を示すために使用されます。
+新しい<veljvo>内部タグに注意してください。
 
   compound-cmavo-example
   ----------------------
 
-Example:
+例：
 
     <example xml:id="example-random-id-qIYK" role="compound-cmavo-example">
       <title>
@@ -335,13 +320,13 @@ Example:
       </compound-cmavo>
     </example>
 
-Used to show the breakup of compound cmavo.
+複合シマヴォの分離を示すために使用されます。
 
       Special Cases
       =============
 
-<phrase role="logical-vowel">A</phrase> denotes one of the A, E, O
-or U vowels associated with Lojbanic logic operations.
+<phrase role = "logical-vowel">A</phrase>は、
+ロジバニック論理演算に関連付けられている母音 A、E、O、Uのいずれかを示します。
 
 <lujvo-making>
   <jbo>zbasai</jbo>
@@ -352,7 +337,7 @@ or U vowels associated with Lojbanic logic operations.
   landscape orientation
   ---------------------
 
-Here's how to do a table with rows instead of columns:
+列ではなく行で表を作成する方法は次のとおりです：
 
 <informaltable class="rotated">
       <tbody>
@@ -360,5 +345,5 @@ Here's how to do a table with rows instead of columns:
         <td><simplelist type="vert"><member>'</member><member><valsi>.y'y.</valsi></member></simplelist></td>
         <td><simplelist type="vert"><member>a</member><member><valsi>.abu</valsi></member></simplelist></td><F29>
 
-That's from chapter 17.  The class="rotated" just sets some CSS
-stuff so it doesn't get so spread out.
+それは17章からです。
+class="rotated" は、CSSの一部を設定するだけなので、あまり普及しません。
