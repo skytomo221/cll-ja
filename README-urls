@@ -1,47 +1,45 @@
 
-This is about the <anchor.../> tags in the text, which (except for
-bits in chapters 20 and 21) are SOLELY A BACKWARDS COMPATIBILITY
-MEASURE.
+これは、テキスト内の<anchor .../>タグについてで、
+（20章と21章のビットを除く）は、単に後方互換性の手段です。
 
-As such, the <anchor.../> tags should NEVER be updated, even when
-things are moved.
+したがって、<anchor .../>タグは、物事が移動された場合でも更新されるべきではありません。
 
-The below is how our anchors used to work, and how they map to the
-new system, and was originally copied from https://github.com/lojban/cll/issues/82
+以下は、アンカーがどのように機能し、新しいシステムにどのようにマッピングされるかを示しています。
+元々は https://github.com/lojban/cll/issues/82 からコピーされたものです。
 
 - ---------
 
-Old CLL html Chapter 5 Example 2.3 is:
+Old CLL html Chapter 5 Example 2.3は次のとおりです：
 
     http://www.lojban.org/publications/reference_grammar/chapter5.html#e2d3
 
-github.io/dag-cll Chapter 5 Example 2.3 is:
+github.io/dag-cll 第 5 章の例 2.3 は次のとおりです。
 
     https://lojban.github.io/cll/5/2/#e3
 
-These are both terrible as they rely on the chunking behaviour selected! That is: if the file is one big chunk, neither of these methods can possibly work.
+これらは選択されたチャンク化動作に依存しているため、どちらもひどいものです！ つまり、ファイルが1つの大きなチャンクである場合、これらのメソッドはいずれも機能しない可能性があります。
 
-I don't know what that means in terms of our ability to generate such anchors.
+そのようなアンカーを生成する能力の観点から、それが何を意味するのかわかりません。
 
-Section URLs:
+セクションURL：
 
     old: http://www.lojban.org/publications/reference_grammar/chapter5.html#s2
     dag-cll: https://lojban.github.io/cll/5/2/
 
-So the thing is that pre-CLLv1.1 URLs are reliably convertible to CLLv1.1 URLs, just not at the anchor level. In particular, this:
+つまり、アンカーレベルではなく、CLLv1.1より前のURLをCLLv1.1 URLに確実に変換できるということです。 特に、これ：
 
     http://vrici.lojban.org/~rlpowell/media/public/cll_build/cll-xhtml-nochunks/#c5e2d3
 
-is the equivalent of both of the example URLs above, and this:
+は、上記のサンプルURLの両方に相当します：
 
     http://vrici.lojban.org/~rlpowell/media/public/cll_build/cll-xhtml-nochunks/#c5s2
 
-Notice that these conversions can easily be achieved by Apache mod_rewrite, but there is no sane/obvious way to do it at any other level.
+これらの変換は、Apache mod_rewriteで簡単に実現できますが、他のレベルでそれを行うための正気で明白な方法はありません。
 
-If, for some reason, it is really important to make it so that, say, the chapter-chunked output of CLLv1.1 responds to [url]/chapter5.html#e2d3 , this could be done by:
+何らかの理由で、たとえば CLLv1.1 のチャプターチャンク出力が [url]/chapter5.html#e2d3 に応答するようにすることが非常に重要な場合、これは次のように実行できます。
 
-    1. cp or mv chapter-selbri.html to chapter5.html
+    1. cp または mv chapter-selbri.html から chapter5.html
 
-    2. Something like: sed -r -i 's;a id="c5e([0-9]+)d([0-9]+)">;&\n;' (untested)
+    2. 次のようなもの： sed -r -i 's;a id="c5e([0-9]+)d([0-9]+)">;&\n;' （未検証）
 
-I don't see baking that replacement into the build process as adding significant value, much easier to have whatever system is hosting CLLv1.1's output do it at the mod rewrite level.
+CLLv1.1 の出力をホストしているシステムが mod 書き換えレベルでそれを行うようにする方がはるかに簡単であるため、その置換をビルドプロセスに組み込み、重要な価値を追加するとは考えていません。
